@@ -1,0 +1,30 @@
+---
+title: Virtual Agent Train
+version: 1.0.0 
+icon: python
+
+tags:
+  - training
+
+command: python3 train.py
+
+requirements:
+  cpu: 3.5
+  memory: 7.5
+  gpu: 0
+  hpu: 0
+
+image: cnvrg:v5.0
+
+language: python3
+
+arguments:
+  - key: data
+    type: 'discrete'
+    values:
+      - 'data.csv'
+  - key: epochs
+    type: 'discrete'
+    values:
+      - '200'
+  

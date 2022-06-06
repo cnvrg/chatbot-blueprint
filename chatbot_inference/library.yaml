@@ -1,0 +1,31 @@
+---
+title: Virtual Agent Inference
+version: 1.0.0
+icon: python 
+
+tags:
+  - inference
+
+kind: webservice
+
+requirements:
+  cpu: 3.5
+  memory: 7.5
+  gpu: 0
+  hpu: 0
+
+image: cnvrg:v5.0
+
+language: python3
+
+arguments: 
+  accept_files: false 
+  file_name: predict.py
+  function_name: get_response 
+  prep_file: '' 
+  prep_function: ''
+  input_example:
+    input_text: "Hello" 
+  input_schema:
+    input_text: text
+  output_schema:  {}

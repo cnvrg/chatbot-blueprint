@@ -1,0 +1,45 @@
+---
+title: Virtual Agent Inference
+version: 1.0.0 
+description: Infer the intent from costumers messages based on a pretrained model.
+
+author: "cnvrg"
+author_email: "info@cnvrg.io"
+
+tags:
+  - inference
+  
+tasks:
+  - title: Inference
+    top: 131
+    left: 378 
+    
+    type: deploy
+    
+    library: virtual-agent-inference
+    library_version: 1.0.0
+    
+    kind: webservice 
+    
+    requirements: 
+      cpu: 3.5
+      memory: 7.5
+      gpu: 0
+      hpu: 0
+      
+    image: cnvrg:v5.0
+    language: python3
+    accept_files: false
+  
+    file_name: predict.py 
+    function_name: get_response
+    prep_file: '' 
+    prep_function: ''
+    input_example:
+      input_text: 'Hello'
+    input_schema:
+      input_text: text
+    output_schema: {} 
+    
+    
+relations: []
