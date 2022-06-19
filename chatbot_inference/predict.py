@@ -32,7 +32,7 @@ logging.set_verbosity_error()
 # specify GPU
 device = torch.device('cpu')
 
-mode = os.environ.get('mode', 'response')
+mode = os.environ.get('mode', 'intent')
 
 if os.path.exists('/input/train'):
     model_path = '/input/train/chatbot_model.pt'
