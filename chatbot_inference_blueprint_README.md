@@ -2,7 +2,7 @@
 You can use this blueprint to immediately infer the intent of a message received from a costumer. For using this pretrained intent recognition model, you will need to create a ready-to-use API-endpoint that can be integrated with your data and application, in minutes.
 This blueprint supports two modes:
 1. `intent` -  returns the intent of the given text
-2. `response` - returns a response message relevant to the identified intent based on a intent-response dictionary provided in the environment variable `responses_dict`
+2. `response` - returns a response message relevant to the identified intent based on a intent-response dictionary provided in the environment variable `responses_file`
  You can the mode by defining intent/response in the `mode` environment variable.
 
 Click on Use Blueprint button
