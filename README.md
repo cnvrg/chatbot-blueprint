@@ -1,4 +1,3 @@
-# Train
 Use this blueprint to train a tailored chatbot model that infers the intent of a customer message based on your custom data. To train this model, provide a training dataset containing a collection of possible messages mapped to their intent.
 This blueprint retrains a neural network on the custom dataset, resulting in a trained chatbot model and deployed endpoint to serve as an organization's virtual agent, which detects its customer intents and generates responses accordingly. Complete the following steps to train this chatbot model:
 1. Click the **Use Blueprint** button. The cnvrg Blueprint Flow page displays.
