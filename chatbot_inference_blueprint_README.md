@@ -1,4 +1,3 @@
-# Inference
 Use this blueprint to immediately infer the intent of a customer message. To run this pretrained intent recognition model, create a ready-to-use API endpoint that can be quickly integrated with your data and application.
 This inference blueprint's model was trained using e-commerce data. To use custom data according to your specific business, run this counterpart’s [training blueprint](../chatbot-blueprint/README.md), which trains the model and establishes an endpoint based on the newly trained model.
 This blueprint supports two modes:
