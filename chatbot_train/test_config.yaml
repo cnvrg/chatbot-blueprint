@@ -1,0 +1,7 @@
+test_arguments:
+  data1: "data2.csv"
+  epochs1: 10
+  data2: "data3.csv"
+  epochs2: 5
+  data3: "data4.csv"
+  data4: ""
