@@ -1,0 +1,27 @@
+intent,text,None.,"46,985",Text,"Classification,",Web of Science Dataset,Hierarchical Datasets for Text Classification
+Categorization,Categorization,Categorization,Categorization,Categorization,Categorization,Categorization,Categorization
+,,,,,,,
+2017,[235][236],K. Kowsari et al.,2017,[235][236],K. Kowsari et al.,2017,[235][236]
+Legal Case Reports,Federal Court of Australia cases from 2006 to 2009.,None.,"4,000",Text,"Summarization,",Legal Case Reports,Federal Court of Australia cases from 2006 to 2009.
+citation analysis,citation analysis,citation analysis,citation analysis,citation analysis,citation analysis,citation analysis,citation analysis
+,,,,,,,
+2012,[237][238],F. Galgani et al.,2012,[237][238],F. Galgani et al.,2012,[237][238]
+Blogger Authorship Corpus,"Blog entries of 19,320 people from blogger.com.","Blogger self-provided gender, age, industry, and astrological sign.","681,288",Text,"Sentiment analysis, summarization, classification",2006,[239][240]
+Social Structure of Facebook Networks,Large dataset of the social structure of Facebook.,None.,100 colleges covered,Text,"Network analysis, clustering",2012,[241][242]
+Dataset for the Machine Comprehension of Text,Stories and associated questions for testing comprehension of text.,None.,660,Text,"Natural language processing, machine comprehension",2013,[243][244]
+The Penn Treebank Project,Naturally occurring text annotated for linguistic structure.,Text is parsed into semantic trees.,~ 1M words,Text,"Natural language processing, summarization",1995,[245][246]
+DEXTER Dataset,"Task given is to determine, from features given, which articles are about corporate acquisitions.",Features extracted include word stems. Distractor features included.,2600,Text,Classification,2008,[247]
+Google Books N-grams,N-grams from a very large corpus of books,None.,2.2 TB of text,Text,"Classification, clustering, regression",2011,[248][249]
+Personae Corpus,Collected for experiments in Authorship Attribution and Personality Prediction. Consists of 145 Dutch-language essays.,"In addition to normal texts, syntactically annotated texts are given.",145,Text,"Classification, regression",2008,[250][251]
+CNAE-9 Dataset,Categorization task for free text descriptions of Brazilian companies.,Word frequency has been extracted.,1080,Text,Classification,2012,[252][253]
+Sentiment Labeled Sentences Dataset,3000 sentiment labeled sentences.,Sentiment of each sentence has been hand labeled as positive or negative.,3000,Text,"Classification, sentiment analysis",2015,[254][255]
+BlogFeedback Dataset,Dataset to predict the number of comments a post will receive based on features of that post.,Many features of each post extracted.,"60,021",Text,Regression,2014,[256][257]
+Stanford Natural Language Inference (SNLI) Corpus,"Image captions matched with newly constructed sentences to form entailment, contradiction, or neutral pairs.","Entailment class labels, syntactic parsing by the Stanford PCFG parser","570,000",Text,Natural language inference/recognizing textual entailment,2015,[258]
+DSL Corpus Collection (DSLCC),A multilingual collection of short excerpts of journalistic texts in similar languages and dialects.,None,"294,000 phrases",Text,Discriminating between similar languages,2017,[259]
+Urban Dictionary Dataset,"Corpus of words, votes and definitions",User names anonymised,"2,580,925",CSV,"NLP, Machine comprehension",2016 May,[260]
+T-REx,Wikipedia abstracts aligned with Wikidata entities,Alignment of Wikidata triples with Wikipedia abstracts,11M aligned triples,JSON and NIF [3],"NLP, Relation Extraction",2018,[261]
+General Language Understanding Evaluation (GLUE),Benchmark of nine tasks,Various,~1M sentences and sentence pairs,,NLU,2018,[262][263][264]
+Contract Understanding Atticus Dataset (CUAD) (formerly known as Atticus Open Contract Dataset (AOK)),Dataset of legal contracts with rich expert annotations,,"~13,000 labels",CSV and PDF,"Natural language processing, QnA",2021,
+Vietnamese Image Captioning Dataset (UIT-ViIC),Vietnamese Image Captioning Dataset,,"19,250 captions for 3,850 images",CSV and PDF,"Natural language processing, Computer vision",2020,[265]
+Vietnamese Names annotated with Genders (UIT-ViNames),Vietnamese Names annotated with Genders,,"26,850 Vietnamese full names annotated with genders",CSV,Natural language processing,2020,[266]
+Vietnamese Constructive and Toxic Speech Detection Dataset (UIT-ViCTSD),Vietnamese Constructive and Toxic Speech Detection Dataset,,"10,000 Vietnamese users' comments on online newspapers on 10 domains",CSV,Natural Language Processing,2021,[267]

@@ -1,7 +1,10 @@
 test_arguments:
-  data1: "data2.csv"
-  epochs1: 10
-  data2: "data3.csv"
-  epochs2: 5
-  data3: "data4.csv"
-  data4: ""
+  data1: "messages.csv"
+  epochs1: 3
+  data2: "messages.csv"
+  epochs2: -5
+  data3: "news_articles.csv"
+  epochs3: 260
+  data4: "data.csv"
+  data5: "image.csv"
+  #data6: "large_data.csv"

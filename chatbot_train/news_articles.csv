@@ -1,0 +1,11 @@
+intent,text,Preprocessing,,,Default Task
+MovieTweetings,Movie rating dataset based on public and well-structured tweets,,,,"Classification, regression"
+Twitter100k,Pairs of images and tweets,,,,Cross-media retrieval
+Sentiment140,"Tweet data from 2009 including original text, time stamp, user and sentiment.",Classified using distant supervision from presence of emoticon in tweet.,,,Sentiment analysis
+ASU Twitter Dataset,"Twitter network data, not actual tweets. Shows connections between a large number of users.",None.,,,"Clustering, graph analysis"
+SNAP Social Circles: Twitter Database,Large Twitter network data.,"Node features, circles, and ego networks.",,,"Clustering, graph analysis"
+MovieTweetings,Movie rating dataset based on public and well-structured tweets,,,,"Classification, regression"
+Twitter100k,Pairs of images and tweets,,,,Cross-media retrieval
+Sentiment140,"Tweet data from 2009 including original text, time stamp, user and sentiment.",Classified using distant supervision from presence of emoticon in tweet.,,,Sentiment analysis
+ASU Twitter Dataset,"Twitter network data, not actual tweets. Shows connections between a large number of users.",None.,,,"Clustering, graph analysis"
+SNAP Social Circles: Twitter Database,Large Twitter network data.,"Node features, circles, and ego networks.",,,"Clustering, graph analysis"
