@@ -11,9 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.2.0
+        uses: actions/checkout@v3
       - name: Setup Python
-        uses: actions/setup-python@v
+        uses: actions/setup-python@v4.2.0
       - name: Install libs
         run: pip install -r requirement.txt
       - name: Unit test execution
