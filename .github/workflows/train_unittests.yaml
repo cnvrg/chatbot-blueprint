@@ -13,10 +13,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Setup Python
-        uses: actions/setup-python@v3
-        with:
-          python-version: "3.9.6"  
+        uses: actions/setup-python@v4.2.0
+      - name: test 
+        run: ls ${{ env.GITHUB_WORKSPACE }}
       - name: Install libs
-        run: pip install -r chatbot_train/requirement.txt
+        run: pip install -r requirement.txt
+        working-directory: ${{ env.GITHUB_WORKSPACE }}/chatbot-blueprint/chatbot_train
       - name: Unit test execution
         run: python chatbot_train/test_train.py
