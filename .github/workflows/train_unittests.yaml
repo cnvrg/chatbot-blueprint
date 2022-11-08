@@ -15,7 +15,8 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4.2.0
       - name: test 
-        run: ls ${{ env.GITHUB_WORKSPACE }}
+        run: ls chatbot_train
+        working-directory: ${{ env.GITHUB_WORKSPACE }}
       - name: Install libs
         run: pip install -r chatbot_train/requirement.txt
         working-directory: ${{ env.GITHUB_WORKSPACE }}
