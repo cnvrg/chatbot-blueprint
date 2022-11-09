@@ -15,7 +15,7 @@ from transformers import logging
 import os
 import json
 import argparse
-from binaryornot.check import is_binary
+#from binaryornot.check import is_binary
 
 
 cnvrg_workdir = os.environ.get("CNVRG_WORKDIR", "/cnvrg")
@@ -42,6 +42,11 @@ epochs = epochs_count
 train_losses = []
 train_loss = ""
 model = ""
+def is_binary(file_name):
+    try:
+        with open(file_name, 'tr') as check_file:  # try open file in text mode
+            check_file.read()
+            return False
 def train(data): 
 
     df = pd.read_csv(data)
@@ -210,7 +215,7 @@ def train(data):
     return train_avg_loss, train_accuracy, test_avg_loss, test_accuracy, total_preds
 def train_run(df1="messages.csv",epochs=2):
        
-    if epochs < 1 or df1 =="" or epochs > 250 or os.stat(df1).st_size == 0 or is_binary(df1) == True:
+    if epochs < 1 or df1 =="" or epochs > 250 or os.stat(df1).st_size == 0 or is_binary(df1):
         return False
     else:
         for epoch in range(epochs):
