@@ -2,7 +2,8 @@ name: Unit Test for Train
 
 on:
   push:
-    branches: []
+    branches:
+      - md-unittests
       
   pull_request:
 
