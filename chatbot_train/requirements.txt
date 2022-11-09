@@ -30,6 +30,6 @@ torchinfo==1.5.4
 tqdm==4.62.3
 transformers==4.16.2
 typing_extensions==4.1.1
-urllib3==1.26.8
+urllib3==1.22
 zipp==3.6.0
 binaryornot
