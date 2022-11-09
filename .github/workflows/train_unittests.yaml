@@ -25,5 +25,5 @@ jobs:
           pip install -r chatbot_train/requirements.txt
         working-directory: ${{ env.GITHUB_WORKSPACE }}
       - name: Unit test execution
-        run: python chatbot_train/test_train.py
+        run: cd chatbot_train && python test_train.py
         working-directory: ${{ env.GITHUB_WORKSPACE }}
