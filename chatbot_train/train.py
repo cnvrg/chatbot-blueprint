@@ -209,9 +209,10 @@ def train(data):
 
     return train_avg_loss, train_accuracy, test_avg_loss, test_accuracy, total_preds
 def train_run(df1="messages.csv",epochs=2):
-    if is_binary(df1):
-        print('binary file is not supported')
-        return False
+    with open(df1, 'rb') as f:
+        for block in f:
+            if b'\0' in block:
+                return False
     if epochs < 1 or df1 =="" or epochs > 250 or os.stat(df1).st_size == 0:
         return False
     else:
