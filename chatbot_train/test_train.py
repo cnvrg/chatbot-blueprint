@@ -1,4 +1,5 @@
 import unittest
+import numpy as np
 from train import train_run
 import os
 import sys
