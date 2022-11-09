@@ -210,7 +210,7 @@ def train(data):
     return train_avg_loss, train_accuracy, test_avg_loss, test_accuracy, total_preds
 def train_run(df1="messages.csv",epochs=2):
        
-    if epochs < 1 or df1 =="" or epochs > 250 or os.stat(df1).st_size == 0 or is_binary(df1) != True:
+    if epochs < 1 or df1 =="" or epochs > 250 or os.stat(df1).st_size == 0 or is_binary(df1) == True:
         return False
     else:
         for epoch in range(epochs):
