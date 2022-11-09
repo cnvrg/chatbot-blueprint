@@ -47,24 +47,17 @@ class TestTrain(unittest.TestCase):
         self.assertFalse(train_run(data,epochs))
 
     def test_binary(self):
-        data = self.test_cfg["data4"]
+        data = self.test_cfg["data5"]
         epochs = self.test_cfg["epochs1"]
         # test with binary files
         self.assertFalse(train_run(data,epochs))
         
     def test_empty_file(self):
         #setup 
-        data = self.test_cfg["data5"]
+        data = self.test_cfg["data6"]
         epochs = self.test_cfg["epochs1"]
         # test with empty data
         self.assertFalse(train_run(data,epochs))
-        
-    # def test_large_data(self):
-    #     #setup data 
-    #     data = self.test_cfg["data6"]
-    #     epochs = self.test_cfg["epochs1"]
-    #     # test with large dataset
-    #     self.assertFalse(train_run(data,epochs))
 
     def test_null(self):
         # test with null data
