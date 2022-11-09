@@ -1,6 +1,7 @@
 import unittest
 import numpy as np
 from train import train_run
+from bert_model import BERT_Arch
 import os
 import sys
 import pandas
