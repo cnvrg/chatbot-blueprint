@@ -5,6 +5,6 @@ test_arguments:
   epochs2: -5
   data3: "news_articles.csv"
   epochs3: 260
-  data4: "data.csv"
+  data4: "messages.csv"
   data5: "image.csv"
   #data6: "large_data.csv"
