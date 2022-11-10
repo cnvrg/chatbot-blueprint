@@ -26,7 +26,7 @@ class TestPredict(unittest.TestCase):
         data = {"input_text": "we cannot find the *requested (files in $the cached path. ?Please try again or make sure your Internet connection"}
         self.assertTrue(get_response(data))
 
-    def test_with_large_data(self):
+    def test_with_numeric(self):
         data = {"input_text": 5}
         with self.assertRaises(TypeError):
                 get_response(data)

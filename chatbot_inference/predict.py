@@ -80,18 +80,21 @@ def get_prediction(str):
     probabilities = sm(preds)
     preds = preds.detach().cpu().numpy()
     preds = np.argmax(preds, axis=1)
+    print(le.inverse_transform(preds)[0], probabilities[0][preds][0].item())
     return le.inverse_transform(preds)[0], probabilities[0][preds][0].item()
-
 
 def get_response(data):
     message = data['input_text']
+    print(message)
     intent, confidence = get_prediction(message)
     if mode == 'intent':
         result = {"intent": intent, "confidence": confidence}
+        print(result)
         return result
     for i in res:
         if i == intent:
             result = random.choice(res[i])
             break
     result = {"intent": intent, "response": result, "confidence": confidence}
+    print(result)
     return result
