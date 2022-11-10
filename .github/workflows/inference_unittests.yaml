@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - md-unittests
+    paths: 
+      - chatbot_inference/**
       
   pull_request:
 
