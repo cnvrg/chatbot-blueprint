@@ -26,5 +26,5 @@ jobs:
           pip install -r chatbot_inference/requirements.txt
         working-directory: ${{ env.GITHUB_WORKSPACE }}
       - name: Unit test execution
-        run: cd chatbot_inference && python test_train.py
+        run: cd chatbot_inference && python test_predict.py
         working-directory: ${{ env.GITHUB_WORKSPACE }}
