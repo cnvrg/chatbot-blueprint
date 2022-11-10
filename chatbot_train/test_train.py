@@ -19,10 +19,7 @@ class TestTrain(unittest.TestCase):
              self.test_cfg = yaml.load(c_info_file, Loader=SafeLoader)
         self.test_cfg = self.test_cfg["test_arguments"]
         
-
-    # def test_default_parms(self):
-    #     self.assertEqual(train.train_run(), None)
-    # test with default parameters  
+ 
     def test_default_parms(self):
             self.assertTrue(train_run())
 
@@ -61,7 +58,9 @@ class TestTrain(unittest.TestCase):
 
     def test_null(self):
         # test with null data
-        self.assertFalse(train_run("", 3))
+        data = self.test_cfg["data7"]
+        epochs = self.test_cfg["epochs1"]
+        self.assertFalse(train_run(data,epochs))
     
     
 if __name__ == '__main__':

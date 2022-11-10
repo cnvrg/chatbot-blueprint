@@ -1,0 +1,11 @@
+test_arguments:
+  data:
+    - input_text: "Hello world"
+  empty_data:
+    - input_text: ""
+  list_data:
+    - input_text: ["hello","world"]
+  large_data:
+    - input_text: ".we cannot find the *requested (files in $the cached path. ?Please try again or make sure your Internet connection"
+  num_data:
+    - input_text: 5  
