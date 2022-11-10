@@ -63,10 +63,6 @@ class TestTrain(unittest.TestCase):
         # test with null data
         self.assertFalse(train_run("", 3))
     
-    # def tearDown(self):
-    #     del self.test_cfg
-        
-
-
+    
 if __name__ == '__main__':
     unittest.main()
