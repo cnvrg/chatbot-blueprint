@@ -10,7 +10,7 @@ on:
       - main
 
 jobs:
-  build:
+  check-license:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -22,12 +22,14 @@ jobs:
       - name: Install addlicense
         run: go install github.com/google/addlicense@latest
       - name: Check python code licenses
-        run: addlicense --check -c 'Intel Corporation' -l MIT -s ./*.py ./**/*.py
+        run: find . -name *.py -exec addlicense --check -c 'Intel Corporation' -l MIT -s {} \; 
       - name: Check shell code licenses
-        run: addlicense --check -c 'Intel Corporation' -l MIT -s ./*.sh ./**/*.sh ./*.func ./**/*.func
+        run: find . *.sh -exec addlicense --check -c 'Intel Corporation' -l MIT -s {} \;
+      - name: Check shell function code licenses
+        run: find . *.func -exec addlicense --check -c 'Intel Corporation' -l MIT -s {} \;
       - name: Check yaml licenses
-        run: addlicense --check -c 'Intel Corporation' -l MIT -s ./*.yaml ./**/*.yaml
-      - name: Check Dockerfile licenses
-        run: addlicense --check -c 'Intel Corporation' -l MIT -s ./Dockerfile ./**/Dockerfile
+        run: find . -name *.yaml addlicense --check -c 'Intel Corporation' -l MIT -s .{} \;
       - name: Check json licenses
-        run: addlicense --check -c 'Intel Corporation' -l MIT -s ./*.json ./**/*.json
+        run: find . -name *.json addlicense --check -c 'Intel Corporation' -l MIT -s .{} \;
+      - name: Check Dockerfile licenses
+        run: find . -name Dockerfile addlicense --check -c 'Intel Corporation' -l MIT -s .{} \;
