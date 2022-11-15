@@ -12,6 +12,4 @@ Complete the following steps to deploy this chatbot API endpoint:
    * Use the Try it Live section with any text to check the model to infer the intent.
    * Use the bottom integration panel to integrate your API with your code by copying in your code snippet.
 
-An API endpoint that infers the intents of customer messages has now been deployed. Click [here](link) for this blueprint's more detailed run instructions.
-To learn how this blueprint was created, click [here](https://github.com/cnvrg/chatbot-blueprint).
-
+An API endpoint that infers the intents of customer messages has now been deployed. To learn how this blueprint was created, click [here](https://github.com/cnvrg/chatbot-blueprint).
