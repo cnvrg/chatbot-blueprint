@@ -21,8 +21,8 @@
 
 ---
 title: Virtual Agent Inference
-version: 1.0.0 
-description: Infer the intent from costumers messages based on a pretrained model.
+version: 1.0.0
+description: Serves as a virtual agent to infer the intents of customer messages and generate responses using your custom data and a pretrained intent-recognition chatbot model.
 
 author: "cnvrg"
 author_email: "info@cnvrg.io"
@@ -33,16 +33,16 @@ tags:
 tasks:
   - title: Inference
     top: 131
-    left: 378 
+    left: 378
     
     type: deploy
     
     library: virtual-agent-inference
     library_version: 1.0.0
     
-    kind: webservice 
+    kind: webservice
     
-    requirements: 
+    requirements:
       cpu: 3.5
       memory: 7.5
       gpu: 0

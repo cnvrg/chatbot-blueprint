@@ -22,8 +22,8 @@
 ---
 title: Virtual Agent Train
 version: 1.0.0
-description: Train and deploy a model that detects the intent of a message sent by a customer 
-long_description: Train and deploy a model that detects the intent of a message sent by a customer based on your custom data
+description: Train and deploy a model that detects the intent of a message sent by a customer
+long_description: Retrain a neural network based on your custom data to train a chatbot model and deploy an endpoint, which serves as a virtual agent to detect your customer message intents and generate responses accordingly.
 
 author: "cnvrg"
 author_email: "info@cnvrg.io"
