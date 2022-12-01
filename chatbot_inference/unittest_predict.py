@@ -26,7 +26,8 @@ class TestPredict(unittest.TestCase):
     def test_with_data(self):
         data = self.data
         print("----testing with data :", data)
-        self.assertTrue(get_response(data))
+        #self.assertTrue(get_response(data))
+        self.assertGreater(get_response(data)['confidence'], 0.80 )
 
     def test_without_data(self):
         data = self.empty_data

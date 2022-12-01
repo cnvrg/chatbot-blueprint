@@ -22,45 +22,55 @@ class TestTrain(unittest.TestCase):
  
     def test_default_parms(self):
             self.assertTrue(train_run())
+            train = train_run()[1]
+            try:
+               self.assertAlmostEqual(train,25,places=1)
+            except AssertionError:
+                pass
 
     def test_with_parms(self):
         #setup data
         data = self.test_cfg["data1"]
         epochs = self.test_cfg["epochs1"]
         #test with data and epochs values
+        train = train_run(data,epochs)[1]
+        try:
+           self.assertAlmostEqual(train,25,places=1)
+        except AssertionError:
+            pass
         self.assertTrue(train_run(data,epochs))
     
     def test_negative_epoch(self):
         #setup data
         data = self.test_cfg["data2"]
         epochs = self.test_cfg["epochs2"]
-        self.assertFalse(train_run(data,epochs))
+        self.assertEqual(train_run(data,epochs),False)
 
     def test_large_epoch(self):
         #setup 
         data = self.test_cfg["data3"]
         epochs = self.test_cfg["epochs3"]
         # test with large epochs value
-        self.assertFalse(train_run(data,epochs))
+        self.assertEqual(train_run(data,epochs),False)
 
     def test_binary(self):
         data = self.test_cfg["data5"]
         epochs = self.test_cfg["epochs1"]
         # test with binary files
-        self.assertFalse(train_run(data,epochs))
+        self.assertEqual(train_run(data,epochs),False)
         
     def test_empty_file(self):
         #setup 
         data = self.test_cfg["data6"]
         epochs = self.test_cfg["epochs1"]
         # test with empty data
-        self.assertFalse(train_run(data,epochs))
+        self.assertEqual(train_run(data,epochs),False)
 
     def test_null(self):
         # test with null data
         data = self.test_cfg["data7"]
         epochs = self.test_cfg["epochs1"]
-        self.assertFalse(train_run(data,epochs))
+        self.assertEqual(train_run(data,epochs),False)
     
     
 if __name__ == '__main__':

@@ -228,4 +228,8 @@ def train_run(df1="messages.csv",epochs=2):
         print(f'\nTest Accuracy: {test_accuracy:.3f}')
 
         torch.save(model.state_dict(), "chatbot_model.pt")
-        return True
+        result = {"Training Loss": train_loss, "Training Accuracy": train_accuracy, "Test Accuracy": test_accuracy}
+        print(result)
+        #return result
+        print(train_loss, train_accuracy, test_accuracy)
+        return train_loss, train_accuracy, test_accuracy
