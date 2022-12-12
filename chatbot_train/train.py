@@ -208,9 +208,10 @@ def train(data):
     print(test_accuracy)
 
     return train_avg_loss, train_accuracy, test_avg_loss, test_accuracy, total_preds
-def train_run(df1="messages.csv",epochs=2):
+def train_run(df1="messages.csv",epochs=12):
     if epochs < 1 or df1 =="" or epochs > 250 or os.stat(df1).st_size == 0 or is_binary(df1):
-        return False
+        train_loss, train_accuracy, test_accuracy = 0.0, 0.0, 0.0
+        return(train_loss, train_accuracy, test_accuracy)
     else:
         for epoch in range(epochs):
             print('\n Epoch {:} / {:}'.format(epoch + 1, epochs))
@@ -230,6 +231,5 @@ def train_run(df1="messages.csv",epochs=2):
         torch.save(model.state_dict(), "chatbot_model.pt")
         result = {"Training Loss": train_loss, "Training Accuracy": train_accuracy, "Test Accuracy": test_accuracy}
         print(result)
-        #return result
         print(train_loss, train_accuracy, test_accuracy)
         return train_loss, train_accuracy, test_accuracy

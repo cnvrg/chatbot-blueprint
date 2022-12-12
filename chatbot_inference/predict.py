@@ -85,16 +85,13 @@ def get_prediction(str):
 
 def get_response(data):
     message = data['input_text']
-    print(message)
     intent, confidence = get_prediction(message)
     if mode == 'intent':
         result = {"intent": intent, "confidence": confidence}
-        print(result)
         return result
     for i in res:
         if i == intent:
             result = random.choice(res[i])
             break
     result = {"intent": intent, "response": result, "confidence": confidence}
-    print(result)
     return result

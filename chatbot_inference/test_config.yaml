@@ -1,11 +1,10 @@
 test_arguments:
   data:
-    - input_text: "Hello world"
-  empty_data:
-    - input_text: ""
-  list_data:
-    - input_text: ["hello","world"]
-  large_data:
-    - input_text: ".we cannot find the *requested (files in $the cached path. ?Please try again or make sure your Internet connection"
-  num_data:
-    - input_text: 5  
+    - input_text: "Please try again or make sure your Internet connection"
+    - input_text: "Hello, how are you"
+    - input_text: "Please update user and contact information"
+    - input_text: "Payment failed please try again"
+    - input_text: "Unable to login"  
+    - input_text: "Please give access to enable location"
+    - input_text: "Payment done successfully"
+    - input_text: "Wrong email id please update email"

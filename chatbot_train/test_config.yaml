@@ -1,6 +1,6 @@
 test_arguments:
   data1: "messages.csv"
-  epochs1: 3
+  epochs1: 5
   data2: "messages.csv"
   epochs2: -5
   data3: "news_articles.csv"
