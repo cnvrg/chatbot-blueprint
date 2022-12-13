@@ -4,8 +4,7 @@ test_arguments:
   data2: "messages.csv"
   epochs2: -5
   data3: "news_articles.csv"
-  epochs3: 300
+  epochs3: 10
   data4: "messages.csv"
   data5: "image.csv"
   data6: "empty.csv"
-  data7: ""

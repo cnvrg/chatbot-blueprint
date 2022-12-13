@@ -18,119 +18,13 @@ import argparse
 from binaryornot.check import is_binary
 
 
-cnvrg_workdir = os.environ.get("CNVRG_WORKDIR", "/cnvrg")
-
-#logging.set_verbosity_warning()
-logging.set_verbosity_error()
-
-# specify GPU
-device = torch.device("cpu")
-parser = argparse.ArgumentParser(description="""Preprocessor""")
 
 
-parser.add_argument('--data', action='store', dest='data', required=False,default='messages.csv',
-                    help="""string. csv file name for training data""")
+x_train,x_test,test_dataloader,model,train_dataloader,device,cross_entropy,optimizer = 0,0,0,0,0,0,0,0
 
 
-parser.add_argument('--epochs', action='store', dest='epochs', default=5,
-                    help="""string. csv file name for training data""")
-
-args = parser.parse_args()
-data = args.data
-epochs_count = int(args.epochs)
-epochs = epochs_count
-train_losses = []
-train_loss = ""
-model = ""
-
-def train(data):
-    df = pd.read_csv(data)
-    global model    
-    labels_list = list(set(df['intent']))
-
-    with open('intents.json', 'w') as outfile:
-        json.dump(labels_list, outfile)
-
-    # Converting the labels into encodings
-    le = LabelEncoder()
-    df['intent'] = le.fit_transform(df['intent'])
-
-    x_train, x_test, y_train, y_test = train_test_split(df['text'], df['intent'], test_size=0.2, random_state=42)
-
-    tokenizer = DistilBertTokenizer.from_pretrained('distilbert-base-uncased')
-    # Import the DistilBert pretrained model
-    bert = DistilBertModel.from_pretrained('distilbert-base-uncased')
-
-    # tokenize and encode sequences in the training set
-    tokens_train = tokenizer(
-        x_train.tolist(),
-        max_length = 8,
-        padding='max_length',
-        truncation=True,
-        return_token_type_ids=False)
-
-    # tokenize and encode sequences in the test set
-    tokens_test = tokenizer(
-        x_test.tolist(),
-        max_length = 8,
-        padding='max_length',
-        truncation=True,
-        return_token_type_ids=False)
-
-    # for train set
-    train_seq = torch.tensor(tokens_train['input_ids'])
-    train_mask = torch.tensor(tokens_train['attention_mask'])
-    train_y = torch.tensor(y_train.tolist())
-
-    # for test set
-    test_seq = torch.tensor(tokens_test['input_ids'])
-    test_mask = torch.tensor(tokens_test['attention_mask'])
-    test_y = torch.tensor(y_test.tolist())
-
-
-    #define a batch size
-    batch_size = 16
-    # wrap tensors
-    train_data = TensorDataset(train_seq, train_mask, train_y)
-    test_data = TensorDataset(test_seq, test_mask, test_y)
-    # sampler for sampling the data during training
-    train_sampler = RandomSampler(train_data)
-    test_sampler = RandomSampler(test_data)
-
-    # DataLoader for train set
-    train_dataloader = DataLoader(train_data, sampler=train_sampler, batch_size=batch_size)
-    # DataLoader for test set
-    test_dataloader = DataLoader(test_data, sampler=test_sampler, batch_size=batch_size)
-
-    # freeze all the parameters. This will prevent updating of model weights during fine-tuning.
-    for param in bert.parameters():
-        param.requires_grad = False
-    model = BERT_Arch(bert, len(labels_list))
-    # push the model to GPU
-    model = model.to(device)
-    summary(model)
-
-    # define the optimizer
-    optimizer = AdamW(model.parameters(), lr = 1e-3)
-
-    #compute the class weights
-    class_wts = compute_class_weight('balanced', np.unique(y_train), y_train)
-    #print(class_wts)
-
-    # convert class weights to tensor
-    weights= torch.tensor(class_wts,dtype=torch.float)
-    weights = weights.to(device)
-    # loss function
-    cross_entropy = nn.NLLLoss(weight=weights) 
-
-    # empty lists to store training and validation loss of each epoch
-    train_losses=[]
-    test_losses=[]
-    # number of training epochs
-    
-    #
-    # print(labels_list)
-
+# function to train the model
+def train():  
     model.train()
     train_total_loss = 0
     train_correct = 0
@@ -206,17 +100,132 @@ def train(data):
     #returns the loss and predictions
     print("Test Acc:")
     print(test_accuracy)
-
+    print("OUTPUT--",train_avg_loss, train_accuracy, test_avg_loss, test_accuracy, total_preds)
     return train_avg_loss, train_accuracy, test_avg_loss, test_accuracy, total_preds
-def train_run(df1="messages.csv",epochs=12):
-    if epochs < 1 or df1 =="" or epochs > 250 or os.stat(df1).st_size == 0 or is_binary(df1):
+#def train_run():
+
+
+
+def test(data='messages.csv',epochs=8):
+    global test_dataloader,x_test,x_train,model,train_dataloader,device,cross_entropy,optimizer
+   
+
+    cnvrg_workdir = os.environ.get("CNVRG_WORKDIR", "/cnvrg")
+
+    #logging.set_verbosity_warning()
+    logging.set_verbosity_error()
+
+    # specify GPU
+    device = torch.device("cpu")
+    parser = argparse.ArgumentParser(description="""Preprocessor""")
+
+
+    parser.add_argument('--data', action='store', dest='data', required=False,
+                        help="""string. csv file name for training data""")
+
+
+    parser.add_argument('--epochs', action='store', dest='epochs',default=200,
+                        help="""string. csv file name for training data""")
+
+    args = parser.parse_args()
+    data =  data or args.data 
+    epochs_count = epochs or int(args.epochs) 
+    if epochs < 1 or data =="" or os.stat(data).st_size == 0 or is_binary(data):
         train_loss, train_accuracy, test_accuracy = 0.0, 0.0, 0.0
         return(train_loss, train_accuracy, test_accuracy)
     else:
+        df = pd.read_csv(data)
+            
+        labels_list = list(set(df['intent']))
+
+        with open(cnvrg_workdir + '/intents.json', 'w') as outfile:
+            json.dump(labels_list, outfile)
+
+        # Converting the labels into encodings
+        le = LabelEncoder()
+        df['intent'] = le.fit_transform(df['intent'])
+
+        x_train, x_test, y_train, y_test = train_test_split(df['text'], df['intent'], test_size=0.2, random_state=42)
+
+        tokenizer = DistilBertTokenizer.from_pretrained('distilbert-base-uncased')
+        # Import the DistilBert pretrained model
+        bert = DistilBertModel.from_pretrained('distilbert-base-uncased')
+
+        # tokenize and encode sequences in the training set
+        tokens_train = tokenizer(
+            x_train.tolist(),
+            max_length = 8,
+            padding='max_length',
+            truncation=True,
+            return_token_type_ids=False)
+
+        # tokenize and encode sequences in the test set
+        tokens_test = tokenizer(
+            x_test.tolist(),
+            max_length = 8,
+            padding='max_length',
+            truncation=True,
+            return_token_type_ids=False)
+
+        # for train set
+        train_seq = torch.tensor(tokens_train['input_ids'])
+        train_mask = torch.tensor(tokens_train['attention_mask'])
+        train_y = torch.tensor(y_train.tolist())
+
+        # for test set
+        test_seq = torch.tensor(tokens_test['input_ids'])
+        test_mask = torch.tensor(tokens_test['attention_mask'])
+        test_y = torch.tensor(y_test.tolist())
+
+
+        #define a batch size
+        batch_size = 16
+        # wrap tensors
+        train_data = TensorDataset(train_seq, train_mask, train_y)
+        test_data = TensorDataset(test_seq, test_mask, test_y)
+        # sampler for sampling the data during training
+        train_sampler = RandomSampler(train_data)
+        test_sampler = RandomSampler(test_data)
+
+        # DataLoader for train set
+        train_dataloader = DataLoader(train_data, sampler=train_sampler, batch_size=batch_size)
+        # DataLoader for test set
+        test_dataloader = DataLoader(test_data, sampler=test_sampler, batch_size=batch_size)
+
+        # freeze all the parameters. This will prevent updating of model weights during fine-tuning.
+        for param in bert.parameters():
+            param.requires_grad = False
+        model = BERT_Arch(bert, len(labels_list))
+        # push the model to GPU
+        model = model.to(device)
+        summary(model)
+
+        # define the optimizer
+        optimizer = AdamW(model.parameters(), lr = 1e-3)
+
+        #compute the class weights
+        class_wts = compute_class_weight('balanced', np.unique(y_train), y_train)
+        print(class_wts)
+
+        # convert class weights to tensor
+        weights= torch.tensor(class_wts,dtype=torch.float)
+        weights = weights.to(device)
+        # loss function
+        cross_entropy = nn.NLLLoss(weight=weights) 
+
+        # empty lists to store training and validation loss of each epoch
+        train_losses=[]
+        test_losses=[]
+        # number of training epochs
+        epochs = epochs_count
+        print(labels_list)
+        
+        #train()
+              
         for epoch in range(epochs):
             print('\n Epoch {:} / {:}'.format(epoch + 1, epochs))
             #train model
-            train_loss, train_accuracy, test_loss, test_accuracy, total_preds = train(df1)
+            train_loss, train_accuracy, test_loss, test_accuracy, total_preds = train()
             # append training and validation loss
             train_losses.append(train_loss)
             
@@ -228,8 +237,5 @@ def train_run(df1="messages.csv",epochs=12):
         print(f'\nTraining Accuracy: {train_accuracy:.3f}')
         print(f'\nTest Accuracy: {test_accuracy:.3f}')
 
-        torch.save(model.state_dict(), "chatbot_model.pt")
-        result = {"Training Loss": train_loss, "Training Accuracy": train_accuracy, "Test Accuracy": test_accuracy}
-        print(result)
-        print(train_loss, train_accuracy, test_accuracy)
-        return train_loss, train_accuracy, test_accuracy
+        torch.save(model.state_dict(), cnvrg_workdir + "/chatbot_model.pt")
+        return(train_loss,train_accuracy,test_accuracy)
