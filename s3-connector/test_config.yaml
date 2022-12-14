@@ -1,0 +1,8 @@
+test_arguments:
+  key: ""
+  secret: ""
+  s3_endpoint: "https://s3.amazonaws.com"
+  region_name: "us-east-1"
+  bucket_name: ""
+  file_name1: ""
+  file_name2: ""
