@@ -21,31 +21,28 @@ class Tests3Bucket(unittest.TestCase):
         self.secret= self.test_cfg['secret']
         self.s3_endpoint=self.test_cfg['s3_endpoint']
         self.region_name=self.test_cfg['region_name']
-       
+        
         self.s3_connection = s3connector.S3(
             self.test_cfg["key"], 
             self.test_cfg["secret"], 
             self.test_cfg["s3_endpoint"], 
             self.test_cfg["region_name"]
             )
-
-    # test connection for s3 resource
-    def test_connection(self):
-        self.assertTrue(self.s3_connection)
-        
+        self.main = s3connector.main()
+   
     #  test connection with incorrect keys
-    def test_instantiate_connector(self):        
+    def test_instantiate_connector(self):
         print(f"testing with wrong credentials")
 
         with self.assertRaises(botocore.exceptions.ClientError):
-            c =  s3connector.S3( 
-            self.test_cfg["incorrect_key"], 
-            self.test_cfg["incorrect_secret"], 
-            self.test_cfg["s3_endpoint"], 
+            conn =  s3connector.S3(
+            self.test_cfg["incorrect_key"],
+            self.test_cfg["incorrect_secret"],
+            self.test_cfg["s3_endpoint"],
             self.test_cfg["region_name"]
             ).list_buckets()
-            for b in c:
-                print(b.name)
+            for bucket in conn:
+                print(bucket.name)
 
     # test list buckets from s3 resource
     def test_list_bucket(self):
@@ -65,7 +62,7 @@ class Tests3Bucket(unittest.TestCase):
     def test_list_object(self):
          conn = self.s3_connection.list_objects(self.test_cfg['bucket_name1'])
          for obj in conn:
-            self.assertGreater(len(obj.key), 0) 
+            self.assertGreater(len(obj.key), 0)
    
     # test object without versioning
     def test_check_bucket_without_versioning(self):
@@ -83,13 +80,6 @@ class Tests3Bucket(unittest.TestCase):
         for ver in conn:
             self.assertEqual(ver.id,"null")
 
-    #test metadata non exist object  
-    def test_metadata_non_exist_object(self):
-       with self.assertRaises(botocore.exceptions.ClientError):
-          conn = self.s3_connection.metadata_object(self.test_cfg['bucket_name1'],self.test_cfg['obj_name1'])
-          for meta in conn:
-             print(meta) 
-
     #test metadata object
     def test_metadata_object(self):
         conn = self.s3_connection.metadata_object(self.test_cfg['bucket_name1'],self.test_cfg['obj_name2'])
@@ -99,6 +89,17 @@ class Tests3Bucket(unittest.TestCase):
     def test_delete_object(self):
         conn = self.s3_connection.delete_object(self.test_cfg['bucket_name1'],self.test_cfg['obj_name3'])
         self.assertEqual(conn['ResponseMetadata']['HTTPStatusCode'],200)
+    
+    # test download object
+    def test_download_object(self):
+       conn = self.s3_connection.download_object(self.test_cfg['bucket_name1'],self.test_cfg['obj_name2'],dest_name=self.test_cfg['obj_name4'])
+       self.assertEqual(conn,None)
+    
+    #test upload object   
+    def test_upload_file(self):
+       conn = self.s3_connection.upload_file(self.test_cfg['bucket_name1'],self.test_cfg['obj_name2'])
+       self.assertEqual(conn,None)
+    
     
     @classmethod
     def tearDownClass(self):

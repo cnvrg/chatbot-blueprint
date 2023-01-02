@@ -9,5 +9,6 @@ test_arguments:
   obj_name1: "sample.txt"
   obj_name2: "file.txt"
   obj_name3: "file2.txt"
+  obj_name4: "testfile.txt"
   incorrect_key: "jiojjjjjjjdcvbnj"
   incorrect_secret: "dfghjkmndrtyuknftyj"
