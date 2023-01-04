@@ -198,9 +198,9 @@ def parse_parameters():
     # dataset_parser.set_defaults(func=cmd_download(cnvrg_dataset=args.cnvrg_dataset))
 
     # If there is no parameter, print help
-    if len(sys.argv) < 2:
-        parser.print_help()
-        sys.exit(0)
+    # if len(sys.argv) < 2:
+    #     parser.print_help()
+    #     sys.exit(0)
 
     return parser.parse_args()
 
