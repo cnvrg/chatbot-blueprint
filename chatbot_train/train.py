@@ -131,7 +131,7 @@ def test(data='messages.csv',epochs=8):
     global test_dataloader,x_test,x_train,model,train_dataloader,device,cross_entropy,optimizer
    
 
-    cnvrg_workdir = os.environ.get("CNVRG_WORKDIR", "/cnvrg")
+    cnvrg_workdir = os.environ.get("CNVRG_WORKDIR", "cnvrg")
 
     #logging.set_verbosity_warning()
     logging.set_verbosity_error()
