@@ -27,4 +27,4 @@ jobs:
           ls -alrt;pwd; pip install -r ${TEST_DIRECTORY}/requirements.txt
       - name: Execute unit tests
         run: |
-          find ./${TEST_DIRECTORY} -name unittest*.py -exec python3 {} +
+          cd ${TEST_DIRECTORY}; find ./${TEST_DIRECTORY} -name unittest*.py -exec python3 {} +
