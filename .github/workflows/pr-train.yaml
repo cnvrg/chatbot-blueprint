@@ -27,4 +27,4 @@ jobs:
           sudo mkdir /cnvrg; pip install -r ${TEST_DIRECTORY}/requirements.txt
       - name: Execute unit tests
         run: |
-          cd ${TEST_DIRECTORY}; find . -name unittest*.py -exec python3 {} +
+          cd ${TEST_DIRECTORY}; find . -name unittest*.py -exec sudo python3 {} +
