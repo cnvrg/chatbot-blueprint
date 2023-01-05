@@ -24,8 +24,7 @@ jobs:
           python-version: '3.9'
       - name: Install libs
         run: |
-          pip install -r ${TEST_DIRECTORY}/requirements.txt
+          ls -alrt;pwd; pip install -r ${TEST_DIRECTORY}/requirements.txt
       - name: Execute unit tests
         run: |
-         ls -alrt 
           find ./${TEST_DIRECTORY} -name unittest*.py -exec python3 {} +
