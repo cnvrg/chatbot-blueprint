@@ -24,7 +24,7 @@ jobs:
           python-version: '3.9'
       - name: Install libs
         run: |
-          mkdir /cnvrg; pip install -r ${TEST_DIRECTORY}/requirements.txt
+          sudo mkdir /cnvrg; pip install -r ${TEST_DIRECTORY}/requirements.txt
       - name: Execute unit tests
         run: |
           cd ${TEST_DIRECTORY}; find . -name unittest*.py -exec python3 {} +
