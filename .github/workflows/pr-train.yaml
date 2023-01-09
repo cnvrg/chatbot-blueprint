@@ -1,14 +1,12 @@
-name: Unit Tests for Chatbot Train # testing
+name: Unit Tests for Chatbot Train
 
-env:
-    TEST_DIRECTORY: chatbot_train
 on:
   push:
     branches:
       - main
       - add-unittests
     paths:
-      - ${TEST_DIRECTORY}/**
+      - chatbot_train/**
       
   pull_request:
 
@@ -24,7 +22,8 @@ jobs:
           python-version: '3.9'
       - name: Install libs
         run: |
-          pip install -r ${TEST_DIRECTORY}/requirements.txt
+          pip install -r chatbot_train/requirements.txt
+        working-directory: ${{ env.GITHUB_WORKSPACE }}
       - name: Execute unit tests
-        run: |
-          cd ${TEST_DIRECTORY}; find . -name unittest*.py -exec python3 {} +
+        run: cd chatbot_train && python unittest_train.py
+        working-directory: ${{ env.GITHUB_WORKSPACE }}
