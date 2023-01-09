@@ -258,5 +258,5 @@ def test(data='messages.csv',epochs=8):
         print(f'\nTraining Accuracy: {train_accuracy:.3f}')
         print(f'\nTest Accuracy: {test_accuracy:.3f}')
 
-        torch.save(model.state_dict(), cnvrg_workdir + "/chatbot_model.pt")
+        torch.save(model.state_dict(), "chatbot_model.pt")
         return(train_loss,train_accuracy,test_accuracy)
