@@ -159,7 +159,7 @@ def test(data='messages.csv',epochs=8):
             
         labels_list = list(set(df['intent']))
 
-        with open(cnvrg_workdir + '/intents.json', 'w') as outfile:
+        with open('intents.json', 'w') as outfile:
             json.dump(labels_list, outfile)
 
         # Converting the labels into encodings
