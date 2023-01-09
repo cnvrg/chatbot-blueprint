@@ -1,14 +1,12 @@
 name: Unit Tests for Chatbot s3 connector
 
-env:
-    TEST_DIRECTORY: s3-connector
 on:
   push:
     branches:
       - main
       - add-unittests
     paths:
-      - ${TEST_DIRECTORY}/**
+      - s3-connector/**
       
   pull_request:
 
@@ -24,7 +22,9 @@ jobs:
           python-version: '3.9'
       - name: Install libs
         run: |
-          pip install -r ${TEST_DIRECTORY}/requirements.txt
+          python -m pip install --upgrade pip
+          pip install -r s3-connector/requirements.txt
+        working-directory: ${{ env.GITHUB_WORKSPACE }}
       - name: Execute unit tests
-        run: |
-          find ./${TEST_DIRECTORY} -name unittest*.py -exec python3 {} +
+        run: cd s3-connector && python unittest_s3-connector.py
+        working-directory: ${{ env.GITHUB_WORKSPACE }}
