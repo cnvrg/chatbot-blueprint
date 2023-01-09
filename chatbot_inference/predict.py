@@ -101,8 +101,8 @@ def get_prediction(str):
     probabilities = sm(preds)
     preds = preds.detach().cpu().numpy()
     preds = np.argmax(preds, axis=1)
+    print(le.inverse_transform(preds)[0], probabilities[0][preds][0].item())
     return le.inverse_transform(preds)[0], probabilities[0][preds][0].item()
-
 
 def get_response(data):
     message = data['input_text']
